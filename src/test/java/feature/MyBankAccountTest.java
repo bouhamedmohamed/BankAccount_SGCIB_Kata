@@ -29,4 +29,14 @@ public class MyBankAccountTest {
         myBankAccount.withdraw(100);
         verify(statementsRepository).addWithdraw(100);
     }
+
+    @Test
+    public void should_print_all_statements() {
+        myBankAccount = new MyBankAccount(statementsRepository);
+        myBankAccount.deposit(12);
+        myBankAccount.withdraw(4);
+        myBankAccount.withdrawAll();
+        myBankAccount.printStatements();
+        verify(statementsRepository).getStatements();
+    }
 }

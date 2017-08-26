@@ -25,7 +25,7 @@ public class MyBankAccount {
     }
 
     public void printStatements() {
-        throw new UnsupportedOperationException();
+        statementsRepository.getStatements();
     }
 
     public int getBalance() {

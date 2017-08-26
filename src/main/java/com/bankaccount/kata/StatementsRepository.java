@@ -16,4 +16,8 @@ public class StatementsRepository {
     public void addWithdraw(int amount) {
         balanceAmount.addAndGet(-amount);
     }
+
+    public Object getStatements() {
+        throw new UnsupportedOperationException();
+    }
 }
