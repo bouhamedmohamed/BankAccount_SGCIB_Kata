@@ -1,9 +1,8 @@
 package com.bankaccount.kata;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class MyBankAccount {
     private final StatementsRepository statementsRepository;
+    private static int POSTIF_AMOUNT =0;
 
 
     public MyBankAccount(StatementsRepository statementsRepository) {
@@ -12,6 +11,7 @@ public class MyBankAccount {
     }
 
     public void deposit(int amount) {
+        if(isPositiveAmount(amount))
         statementsRepository.addDeposit(amount);
     }
 
@@ -29,5 +29,9 @@ public class MyBankAccount {
 
     public int getBalance() {
         return this.statementsRepository.getBalanceAmount();
+    }
+
+    private boolean isPositiveAmount(int amount) {
+        return amount> POSTIF_AMOUNT;
     }
 }
