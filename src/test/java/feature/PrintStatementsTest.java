@@ -52,4 +52,13 @@ public class PrintStatementsTest {
         inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || -10 || 0");
     }
 
+    @Test
+    public void should_print_one_withdraw_statement_when_just_one_withdraw_all_statement_has_been_done() {
+        myBankAccount.withdrawAll();
+        myBankAccount.printStatements();
+        InOrder inOrder = inOrder(printer);
+        inOrder.verify(printer).print("Type || Date || Amount || Balance");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || 0 || 0");
+    }
+
 }
