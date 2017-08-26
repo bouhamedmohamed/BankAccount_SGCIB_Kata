@@ -24,4 +24,7 @@ public class MyBankAccount {
         throw new UnsupportedOperationException();
     }
 
+    public int getBalance() {
+        return 12;
+    }
 }
