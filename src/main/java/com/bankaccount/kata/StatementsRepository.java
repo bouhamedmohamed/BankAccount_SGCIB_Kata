@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class StatementsRepository {
     private AtomicInteger balanceAmount = new AtomicInteger(0);
@@ -20,7 +19,7 @@ public class StatementsRepository {
     }
 
     public void addWithdraw(int amount) {
-        balanceAmount.addAndGet(-amount);
+        bankAccountStatements.add(createNewStatement(-amount,TypeStatement.WITHDRAW));
     }
 
     public List<BankAccountStatement> getStatements() {
