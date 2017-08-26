@@ -1,9 +1,13 @@
 package com.bankaccount.kata;
 
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+
 public class MyBankAccount {
     private final StatementsRepository statementsRepository;
     private final Printer printer;
     private static int POSTIF_AMOUNT = 0;
+    private AtomicInteger balance = new AtomicInteger(0);
 
 
     public MyBankAccount(StatementsRepository statementsRepository, Printer printer) {
@@ -27,7 +31,24 @@ public class MyBankAccount {
     }
 
     public void printStatements() {
-       printer.print(statementsRepository.getStatements());
+        final String header = "Type || Date || Amount || Balance";
+        if (statementsRepository.getStatements().isEmpty())
+            printer.print("No statements");
+        else {
+            printer.print(header);
+
+            statementsRepository.getStatements()
+                    .stream()
+                    .map(getBankAccountStatementTransaction())
+                    .forEach(statement -> printer.print(statement));
+        }
+
+
+    }
+
+    private Function<BankAccountStatement, String> getBankAccountStatementTransaction() {
+
+        return statement -> statement.toString().concat(" || " + balance.getAndAdd(statement.getAmountStatement()));
     }
 
     public int getBalance() {
