@@ -61,4 +61,17 @@ public class PrintStatementsTest {
         inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || 0 || 0");
     }
 
+    @Test
+    public void should_print_all_the_different_statements_when_many_statements_have_been_done() {
+        myBankAccount.deposit(100);
+        myBankAccount.withdraw(20);
+        myBankAccount.withdrawAll();
+        myBankAccount.printStatements();
+        InOrder inOrder = inOrder(printer);
+        inOrder.verify(printer).print("Type || Date || Amount || Balance");
+        inOrder.verify(printer).print("DEPOSIT || 2017-08-26 || 100 || 0");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || -20 || 100");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || -80 || 80");
+    }
+
 }
