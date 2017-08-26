@@ -16,7 +16,8 @@ public class MyBankAccount {
     }
 
     public void withdraw(int amount) {
-        statementsRepository.addWithdraw(amount);
+        if (isPositiveAmount(amount))
+            statementsRepository.addWithdraw(amount);
     }
 
     public void withdrawAll() {
