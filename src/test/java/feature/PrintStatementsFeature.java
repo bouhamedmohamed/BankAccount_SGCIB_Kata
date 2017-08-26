@@ -17,7 +17,7 @@ public class PrintStatementsFeature {
     public void setUp() throws Exception {
         printer = new Printer();
         StatementsRepository statementsRepository = new StatementsRepository();
-        myBankAccount = new MyBankAccount(statementsRepository);
+        myBankAccount = new MyBankAccount(statementsRepository, printer);
     }
 
     @Test

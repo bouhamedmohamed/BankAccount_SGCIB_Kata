@@ -1,22 +1,26 @@
 package feature;
 
 import com.bankaccount.kata.MyBankAccount;
+import com.bankaccount.kata.Printer;
 import com.bankaccount.kata.StatementsRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DepositTest {
     private StatementsRepository statementsRepository;
     MyBankAccount myBankAccount;
+    @Mock
+    private Printer printer;
 
     @Before
     public void setUp() throws Exception {
         statementsRepository = new StatementsRepository();
-        myBankAccount = new MyBankAccount(statementsRepository);
+        myBankAccount = new MyBankAccount(statementsRepository, printer);
     }
 
     @Test

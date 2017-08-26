@@ -17,7 +17,7 @@ public class StatementsRepository {
         balanceAmount.addAndGet(-amount);
     }
 
-    public Object getStatements() {
-        throw new UnsupportedOperationException();
+    public String getStatements() {
+        return "No statements";
     }
 }

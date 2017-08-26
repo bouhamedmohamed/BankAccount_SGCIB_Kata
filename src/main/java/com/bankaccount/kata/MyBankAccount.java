@@ -2,12 +2,14 @@ package com.bankaccount.kata;
 
 public class MyBankAccount {
     private final StatementsRepository statementsRepository;
+    private final Printer printer;
     private static int POSTIF_AMOUNT = 0;
 
 
-    public MyBankAccount(StatementsRepository statementsRepository) {
+    public MyBankAccount(StatementsRepository statementsRepository, Printer printer) {
 
         this.statementsRepository = statementsRepository;
+        this.printer = printer;
     }
 
     public void deposit(int amount) {
@@ -25,7 +27,7 @@ public class MyBankAccount {
     }
 
     public void printStatements() {
-        statementsRepository.getStatements();
+       printer.print(statementsRepository.getStatements());
     }
 
     public int getBalance() {
