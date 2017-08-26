@@ -1,7 +1,10 @@
 package com.bankaccount.kata;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class MyBankAccount {
     private final StatementsRepository statementsRepository;
+
 
     public MyBankAccount(StatementsRepository statementsRepository) {
 
@@ -25,6 +28,6 @@ public class MyBankAccount {
     }
 
     public int getBalance() {
-        return 12;
+        return this.statementsRepository.getBalanceAmount();
     }
 }
