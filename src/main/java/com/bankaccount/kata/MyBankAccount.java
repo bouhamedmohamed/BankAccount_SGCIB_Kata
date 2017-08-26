@@ -1,8 +1,15 @@
 package com.bankaccount.kata;
 
-public class MybankAccount {
+public class MyBankAccount {
+    private final StatementsRepository statementsRepository;
+
+    public MyBankAccount(StatementsRepository statementsRepository) {
+
+        this.statementsRepository = statementsRepository;
+    }
+
     public void deposit(int amount) {
-        throw new UnsupportedOperationException();
+        statementsRepository.addDeposit(amount);
     }
 
     public void withdraw(int amount) {

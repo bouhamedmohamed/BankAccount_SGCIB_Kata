@@ -1,24 +1,23 @@
 package feature;
 
-import com.bankaccount.kata.MybankAccount;
+import com.bankaccount.kata.MyBankAccount;
 import com.bankaccount.kata.Printer;
+import com.bankaccount.kata.StatementsRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
-import org.mockito.Mockito;
-
 
 import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.verify;
 
 public class PrintStatementsFeature {
     private Printer printer;
-    private MybankAccount myBankAccount;
+    private MyBankAccount myBankAccount;
 
     @Before
     public void setUp() throws Exception {
-        printer=new Printer();
-        myBankAccount=new MybankAccount();
+        printer = new Printer();
+        StatementsRepository statementsRepository = new StatementsRepository();
+        myBankAccount = new MyBankAccount(statementsRepository);
     }
 
     @Test
@@ -30,7 +29,7 @@ public class PrintStatementsFeature {
         myBankAccount.withdrawAll();
         myBankAccount.printStatements();
 
-        InOrder inOrder= inOrder(printer);
+        InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
         inOrder.verify(printer).print("Deposit  || 27/08/2017 || 1000 || 0");
         inOrder.verify(printer).print("Withdraw || 27/08/2017 || 200 || 1000");
