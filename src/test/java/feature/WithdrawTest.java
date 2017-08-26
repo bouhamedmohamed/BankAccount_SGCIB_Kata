@@ -28,5 +28,12 @@ public class WithdrawTest {
         Assert.assertEquals(0, myBankAccount.getBalance());
     }
 
+    @Test
+    public void should_withdraw_all_the_balance_amount_when_we_make_a_withdrawALL() {
+        myBankAccount.deposit(12);
+        myBankAccount.withdrawAll();
+        Assert.assertEquals(0, myBankAccount.getBalance());
+    }
+
 
 }

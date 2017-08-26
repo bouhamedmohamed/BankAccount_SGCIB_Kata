@@ -21,7 +21,7 @@ public class MyBankAccount {
     }
 
     public void withdrawAll() {
-        throw new UnsupportedOperationException();
+        statementsRepository.addWithdraw(getBalance());
     }
 
     public void printStatements() {
