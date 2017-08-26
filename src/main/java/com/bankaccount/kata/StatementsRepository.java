@@ -6,12 +6,14 @@ public class StatementsRepository {
     private AtomicInteger balanceAmount = new AtomicInteger(0);
 
     public void addDeposit(int amount) {
-        System.out.println(amount);
         balanceAmount.addAndGet(amount);
     }
 
     public int getBalanceAmount() {
-        System.out.println(balanceAmount);
         return balanceAmount.get();
+    }
+
+    public void addWithdraw(int amount) {
+        throw new UnsupportedOperationException();
     }
 }

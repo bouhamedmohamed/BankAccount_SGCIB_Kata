@@ -22,4 +22,11 @@ public class MyBankAccountTest {
         myBankAccount.deposit(100);
         verify(statementsRepository).addDeposit(100);
     }
+
+    @Test
+    public void should_store_withdraw_statement() {
+        myBankAccount = new MyBankAccount(statementsRepository);
+        myBankAccount.withdraw(100);
+        verify(statementsRepository).addWithdraw(100);
+    }
 }

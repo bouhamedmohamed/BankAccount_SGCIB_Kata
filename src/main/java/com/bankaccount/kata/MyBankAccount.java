@@ -2,7 +2,7 @@ package com.bankaccount.kata;
 
 public class MyBankAccount {
     private final StatementsRepository statementsRepository;
-    private static int POSTIF_AMOUNT =0;
+    private static int POSTIF_AMOUNT = 0;
 
 
     public MyBankAccount(StatementsRepository statementsRepository) {
@@ -11,12 +11,12 @@ public class MyBankAccount {
     }
 
     public void deposit(int amount) {
-        if(isPositiveAmount(amount))
-        statementsRepository.addDeposit(amount);
+        if (isPositiveAmount(amount))
+            statementsRepository.addDeposit(amount);
     }
 
     public void withdraw(int amount) {
-        throw new UnsupportedOperationException();
+        statementsRepository.addWithdraw(amount);
     }
 
     public void withdrawAll() {
@@ -32,6 +32,6 @@ public class MyBankAccount {
     }
 
     private boolean isPositiveAmount(int amount) {
-        return amount> POSTIF_AMOUNT;
+        return amount > POSTIF_AMOUNT;
     }
 }
