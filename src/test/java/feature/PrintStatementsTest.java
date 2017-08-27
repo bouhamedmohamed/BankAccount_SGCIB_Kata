@@ -11,6 +11,9 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.time.LocalDate;
+
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 
@@ -21,14 +24,15 @@ public class PrintStatementsTest {
     private MyBankAccount myBankAccount;
     @Mock
     private Printer printer;
-
+    @Mock
     private Clock clock;
 
     @Before
     public void setUp() throws Exception {
-        clock = new Clock();
+
         statementsRepository = new StatementsRepository(clock);
         myBankAccount = new MyBankAccount(statementsRepository, printer);
+        given(clock.getToDayDate()).willReturn(LocalDate.of(2017, 8, 27));
 
     }
 
