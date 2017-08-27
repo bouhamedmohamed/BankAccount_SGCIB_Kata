@@ -31,6 +31,7 @@ public class MyBankAccount {
     }
 
     public void printStatements() {
+        balance.set(0);
         final String header = "Type || Date || Amount || Balance";
         if (statementsRepository.getStatements().isEmpty())
             printer.print("No statements");
