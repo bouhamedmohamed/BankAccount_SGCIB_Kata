@@ -5,17 +5,21 @@ import com.bankaccount.kata.Printer;
 import com.bankaccount.kata.StatementsRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InOrder;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.inOrder;
-
+@RunWith(MockitoJUnitRunner.class)
 public class PrintStatementsFeature {
+    @Mock
     private Printer printer;
     private MyBankAccount myBankAccount;
 
     @Before
     public void setUp() throws Exception {
-        printer = new Printer();
         StatementsRepository statementsRepository = new StatementsRepository();
         myBankAccount = new MyBankAccount(statementsRepository, printer);
     }
@@ -31,8 +35,8 @@ public class PrintStatementsFeature {
 
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
-        inOrder.verify(printer).print("Deposit  || 27/08/2017 || 1000 || 0");
-        inOrder.verify(printer).print("Withdraw || 27/08/2017 || 200 || 1000");
-        inOrder.verify(printer).print("Withdraw || 27/08/2017 || 800 || 800");
+        inOrder.verify(printer).print("DEPOSIT || 2017-08-27 || 1000 || 0");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || -200 || 1000");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || -800 || 800");
     }
 }

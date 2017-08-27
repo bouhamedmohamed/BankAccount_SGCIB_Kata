@@ -6,7 +6,7 @@ import java.util.function.Function;
 public class MyBankAccount {
     private final StatementsRepository statementsRepository;
     private final Printer printer;
-    private static int POSTIF_AMOUNT = 0;
+    private static int ZERO_AMOUNT = 0;
     private AtomicInteger balance = new AtomicInteger(0);
 
 
@@ -56,6 +56,6 @@ public class MyBankAccount {
     }
 
     private boolean isPositiveAmount(int amount) {
-        return amount > POSTIF_AMOUNT;
+        return amount > ZERO_AMOUNT;
     }
 }

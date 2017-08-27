@@ -40,7 +40,7 @@ public class PrintStatementsTest {
         myBankAccount.printStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
-        inOrder.verify(printer).print("DEPOSIT || 2017-08-26 || 10 || 0");
+        inOrder.verify(printer).print("DEPOSIT || 2017-08-27 || 10 || 0");
     }
 
     @Test
@@ -49,7 +49,7 @@ public class PrintStatementsTest {
         myBankAccount.printStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
-        inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || -10 || 0");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || -10 || 0");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class PrintStatementsTest {
         myBankAccount.printStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
-        inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || 0 || 0");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || 0 || 0");
     }
 
     @Test
@@ -69,9 +69,9 @@ public class PrintStatementsTest {
         myBankAccount.printStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
-        inOrder.verify(printer).print("DEPOSIT || 2017-08-26 || 100 || 0");
-        inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || -20 || 100");
-        inOrder.verify(printer).print("WITHDRAW || 2017-08-26 || -80 || 80");
+        inOrder.verify(printer).print("DEPOSIT || 2017-08-27 || 100 || 0");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || -20 || 100");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || -80 || 80");
     }
 
 }
