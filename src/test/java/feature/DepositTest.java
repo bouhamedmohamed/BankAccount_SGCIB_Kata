@@ -1,5 +1,6 @@
 package feature;
 
+import com.bankaccount.kata.Clock;
 import com.bankaccount.kata.MyBankAccount;
 import com.bankaccount.kata.Printer;
 import com.bankaccount.kata.StatementsRepository;
@@ -16,10 +17,11 @@ public class DepositTest {
     MyBankAccount myBankAccount;
     @Mock
     private Printer printer;
-
+    @Mock
+    private Clock clock;
     @Before
     public void setUp() throws Exception {
-        statementsRepository = new StatementsRepository();
+        statementsRepository = new StatementsRepository(clock);
         myBankAccount = new MyBankAccount(statementsRepository, printer);
     }
 
