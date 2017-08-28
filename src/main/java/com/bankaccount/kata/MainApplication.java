@@ -12,18 +12,18 @@ class MainApplication {
 
 
     public static void main(String[] args) throws Exception {
-        bankAccountInitilization();
+        bankAccountInit();
         animator();
     }
 
     private static void animator() throws Exception {
         MenuToShow();
         Scanner scan = new Scanner(System.in);
-        int choiseNumber = scan.nextInt();
-        callTheSuitableService(choiseNumber);
+        int choiceNumber = scan.nextInt();
+        callTheSuitableService(choiceNumber);
     }
 
-    private static void bankAccountInitilization() {
+    private static void bankAccountInit() {
         Clock clock = new Clock();
         printer = new Printer();
         StatementsRepository statementsRepository = new StatementsRepository(clock);
@@ -41,7 +41,7 @@ class MainApplication {
                 withdraw();
                 break;
             case 3:
-                withdarawalAll();
+                withdrawAll();
                 break;
             case 4:
                 displayAll();
@@ -53,7 +53,7 @@ class MainApplication {
     }
 
 
-    private static void withdarawalAll() throws Exception {
+    private static void withdrawAll() throws Exception {
         printer.print("All withdraw Service");
         try {
             myBankAccount.withdrawAllAmount();
@@ -75,7 +75,7 @@ class MainApplication {
 
     private static void withdraw() throws Exception {
         printer.print("withdraw Service");
-        printer.print("input the amout to withdraw");
+        printer.print("input the amount to withdraw");
         Scanner scan = new Scanner(System.in);
         int amountToWithdraw = scan.nextInt();
         try {
@@ -88,7 +88,7 @@ class MainApplication {
 
     private static void deposit() throws Exception {
         printer.print("Deposit Service");
-        printer.print("input the amout to deposit");
+        printer.print("input the amount to deposit");
         Scanner scan = new Scanner(System.in);
         int amountToDeposit = scan.nextInt();
 

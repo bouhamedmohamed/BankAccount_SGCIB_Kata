@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class StatementsRepository {
-    private List<BankAccountStatement> bankAccountStatements = new ArrayList<>();
-    private Clock clock;
+    private final List<BankAccountStatement> bankAccountStatements = new ArrayList<>();
+    private final Clock clock;
 
     public StatementsRepository(Clock clock) {
 
@@ -20,7 +20,7 @@ public class StatementsRepository {
     }
 
     public int getBalanceAmount() {
-        return getBankAccountStatements().stream().mapToInt(statement -> statement.getAmountStatement()).sum();
+        return getBankAccountStatements().stream().mapToInt(BankAccountStatement::getAmountStatement).sum();
     }
 
     public void addWithdraw(int amount) {

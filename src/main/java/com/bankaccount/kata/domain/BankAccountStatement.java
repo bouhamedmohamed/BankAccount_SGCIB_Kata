@@ -18,14 +18,6 @@ public class BankAccountStatement {
         return typeStatement + " || " + dateStatement + " || " + amountStatement;
     }
 
-    public TypeStatement getTypeStatement() {
-        return typeStatement;
-    }
-
-    public LocalDate getDateStatement() {
-        return dateStatement;
-    }
-
     public int getAmountStatement() {
         return amountStatement;
     }
@@ -58,8 +50,7 @@ public class BankAccountStatement {
         }
 
         public BankAccountStatement build() {
-            BankAccountStatement bankAccountStatement = new BankAccountStatement(typeStatement, dateStatement, amountStatement);
-            return bankAccountStatement;
+            return new BankAccountStatement(typeStatement, dateStatement, amountStatement);
         }
     }
 }

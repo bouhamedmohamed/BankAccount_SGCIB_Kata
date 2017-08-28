@@ -20,7 +20,6 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class PrintStatementsTest {
 
-    private StatementsRepository statementsRepository;
     private MyBankAccount myBankAccount;
     @Mock
     private Printer printer;
@@ -30,7 +29,7 @@ public class PrintStatementsTest {
     @Before
     public void setUp() throws Exception {
 
-        statementsRepository = new StatementsRepository(clock);
+        StatementsRepository statementsRepository = new StatementsRepository(clock);
         myBankAccount = new MyBankAccount(statementsRepository, printer);
         given(clock.getToDayDate()).willReturn(LocalDate.of(2017, 8, 27));
 

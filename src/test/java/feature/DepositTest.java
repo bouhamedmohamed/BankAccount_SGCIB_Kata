@@ -13,8 +13,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DepositTest {
-    private StatementsRepository statementsRepository;
-    MyBankAccount myBankAccount;
+    private MyBankAccount myBankAccount;
     @Mock
     private Printer printer;
     @Mock
@@ -22,7 +21,7 @@ public class DepositTest {
 
     @Before
     public void setUp() throws Exception {
-        statementsRepository = new StatementsRepository(clock);
+        StatementsRepository statementsRepository = new StatementsRepository(clock);
         myBankAccount = new MyBankAccount(statementsRepository, printer);
     }
 

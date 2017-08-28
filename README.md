@@ -1,5 +1,5 @@
 # BankAccount_SGCIB_Kata
-Kata for the management of a bankaccount
+Kata for the management of a bankAccount
 
 Bank account kata
 

@@ -8,8 +8,8 @@ import java.util.function.Function;
 public class MyBankAccount {
     private final StatementsRepository statementsRepository;
     private final Printer printer;
-    private static int ZERO_AMOUNT = 0;
-    private AtomicInteger balance = new AtomicInteger(0);
+    private static final int ZERO_AMOUNT = 0;
+    private final AtomicInteger balance = new AtomicInteger(0);
     private static final String ERROR_MESSAGE_BALANCE_AMOUNT_MUST_BE_POSITIVE = "The balance amount must be positive";
     private static final String ERROR_MESSAGE_AMOUNT_MUST_BE_POSITIVE = "The amount must be positive";
 
@@ -54,7 +54,7 @@ public class MyBankAccount {
             statementsRepository.getBankAccountStatements()
                     .stream()
                     .map(getBankAccountStatementTransaction())
-                    .forEach(statement -> printer.print(statement));
+                    .forEach(printer::print);
         }
 
 
