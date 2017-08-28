@@ -62,11 +62,13 @@ public class PrintStatementsTest {
 
     @Test
     public void should_print_one_withdraw_statement_when_just_one_withdraw_all_statement_has_been_done() {
+        myBankAccount.depositAmount(100);
         myBankAccount.withdrawAllAmount();
         myBankAccount.printAllMyBankAccountStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
-        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || 0 || 0");
+        inOrder.verify(printer).print("DEPOSIT || 2017-08-27 || 100 || 0");
+        inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || -100 || 100");
     }
 
     @Test
