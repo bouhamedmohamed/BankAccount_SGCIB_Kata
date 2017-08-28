@@ -1,9 +1,9 @@
 package feature;
 
 import com.bankaccount.kata.Clock;
-import com.bankaccount.kata.MyBankAccount;
+import com.bankaccount.kata.domain.MyBankAccount;
 import com.bankaccount.kata.Printer;
-import com.bankaccount.kata.StatementsRepository;
+import com.bankaccount.kata.domain.StatementsRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +19,7 @@ public class DepositTest {
     private Printer printer;
     @Mock
     private Clock clock;
+
     @Before
     public void setUp() throws Exception {
         statementsRepository = new StatementsRepository(clock);
@@ -28,21 +29,22 @@ public class DepositTest {
     @Test
     public void should_deposit_amount_is_equal_to_balance_amount_when_first_deposit() {
 
-        myBankAccount.deposit(12);
-        Assert.assertEquals(12, myBankAccount.getBalance());
+        myBankAccount.depositAmount(12);
+        Assert.assertEquals(12, myBankAccount.getMyBankAccountBalance());
     }
 
     @Test
     public void should_balance_amount_is_sum_of_all_deposit_amount_when_many_deposit() {
 
-        myBankAccount.deposit(12);
-        myBankAccount.deposit(12);
-        Assert.assertEquals(24, myBankAccount.getBalance());
+        myBankAccount.depositAmount(12);
+        myBankAccount.depositAmount(12);
+        Assert.assertEquals(24, myBankAccount.getMyBankAccountBalance());
     }
+
     @Test
     public void should_not_accept_negative_amount_when_deposit() {
 
-        myBankAccount.deposit(-12);
-        Assert.assertEquals(0, myBankAccount.getBalance());
+        myBankAccount.depositAmount(-12);
+        Assert.assertEquals(0, myBankAccount.getMyBankAccountBalance());
     }
 }

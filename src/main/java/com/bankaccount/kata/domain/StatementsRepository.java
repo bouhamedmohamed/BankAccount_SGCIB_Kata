@@ -1,4 +1,6 @@
-package com.bankaccount.kata;
+package com.bankaccount.kata.domain;
+
+import com.bankaccount.kata.Clock;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,22 +16,22 @@ public class StatementsRepository {
     }
 
     public void addDeposit(int amount) {
-        bankAccountStatements.add(createNewStatement(amount, TypeStatement.DEPOSIT));
+        bankAccountStatements.add(createNewBankAccountStatement(amount, TypeStatement.DEPOSIT));
     }
 
     public int getBalanceAmount() {
-        return getStatements().stream().mapToInt(statement -> statement.getAmountStatement()).sum();
+        return getBankAccountStatements().stream().mapToInt(statement -> statement.getAmountStatement()).sum();
     }
 
     public void addWithdraw(int amount) {
-        bankAccountStatements.add(createNewStatement(-amount, TypeStatement.WITHDRAW));
+        bankAccountStatements.add(createNewBankAccountStatement(-amount, TypeStatement.WITHDRAW));
     }
 
-    public List<BankAccountStatement> getStatements() {
+    public List<BankAccountStatement> getBankAccountStatements() {
         return Collections.unmodifiableList(bankAccountStatements);
     }
 
-    private BankAccountStatement createNewStatement(int amountStatement, TypeStatement typeStatement) {
+    private BankAccountStatement createNewBankAccountStatement(int amountStatement, TypeStatement typeStatement) {
         return BankAccountStatement.BankAccountStatementBuilder.aBankAccountStatement()
                 .withAmountStatement(amountStatement)
                 .withDateStatement(clock.getToDayDate())

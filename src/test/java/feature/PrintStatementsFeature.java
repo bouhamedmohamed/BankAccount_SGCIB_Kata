@@ -1,21 +1,21 @@
 package feature;
 
 import com.bankaccount.kata.Clock;
-import com.bankaccount.kata.MyBankAccount;
+import com.bankaccount.kata.domain.MyBankAccount;
 import com.bankaccount.kata.Printer;
-import com.bankaccount.kata.StatementsRepository;
+import com.bankaccount.kata.domain.StatementsRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.LocalDate;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
+
 @RunWith(MockitoJUnitRunner.class)
 public class PrintStatementsFeature {
     @Mock
@@ -33,12 +33,12 @@ public class PrintStatementsFeature {
     @Test
     public void should_print_all_transactions_statements() {
 
-        given(clock.getToDayDate()).willReturn(LocalDate.of(2017,5,27),LocalDate.of(2017,8,29),LocalDate.of(2017,8,27));
+        given(clock.getToDayDate()).willReturn(LocalDate.of(2017, 5, 27), LocalDate.of(2017, 8, 29), LocalDate.of(2017, 8, 27));
 
-        myBankAccount.deposit(1000);
-        myBankAccount.withdraw(200);
-        myBankAccount.withdrawAll();
-        myBankAccount.printStatements();
+        myBankAccount.depositAmount(1000);
+        myBankAccount.withdrawAmount(200);
+        myBankAccount.withdrawAllAmount();
+        myBankAccount.printAllMyBankAccountStatements();
 
 
         InOrder inOrder = inOrder(printer);

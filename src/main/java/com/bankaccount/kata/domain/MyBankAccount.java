@@ -1,4 +1,6 @@
-package com.bankaccount.kata;
+package com.bankaccount.kata.domain;
+
+import com.bankaccount.kata.Printer;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
@@ -16,29 +18,29 @@ public class MyBankAccount {
         this.printer = printer;
     }
 
-    public void deposit(int amount) {
-        if (isPositiveAmount(amount))
+    public void depositAmount(int amount) {
+        if (isStrictlyPositiveAmount(amount))
             statementsRepository.addDeposit(amount);
     }
 
-    public void withdraw(int amount) {
-        if (isPositiveAmount(amount))
+    public void withdrawAmount(int amount) {
+        if (isStrictlyPositiveAmount(amount))
             statementsRepository.addWithdraw(amount);
     }
 
-    public void withdrawAll() {
-        statementsRepository.addWithdraw(getBalance());
+    public void withdrawAllAmount() {
+        statementsRepository.addWithdraw(getMyBankAccountBalance());
     }
 
-    public void printStatements() {
+    public void printAllMyBankAccountStatements() {
         balance.set(0);
         final String header = "Type || Date || Amount || Balance";
-        if (statementsRepository.getStatements().isEmpty())
+        if (statementsRepository.getBankAccountStatements().isEmpty())
             printer.print("No statements");
         else {
             printer.print(header);
 
-            statementsRepository.getStatements()
+            statementsRepository.getBankAccountStatements()
                     .stream()
                     .map(getBankAccountStatementTransaction())
                     .forEach(statement -> printer.print(statement));
@@ -52,11 +54,11 @@ public class MyBankAccount {
         return statement -> statement.toString().concat(" || " + balance.getAndAdd(statement.getAmountStatement()));
     }
 
-    public int getBalance() {
+    public int getMyBankAccountBalance() {
         return this.statementsRepository.getBalanceAmount();
     }
 
-    private boolean isPositiveAmount(int amount) {
+    private boolean isStrictlyPositiveAmount(int amount) {
         return amount > ZERO_AMOUNT;
     }
 }

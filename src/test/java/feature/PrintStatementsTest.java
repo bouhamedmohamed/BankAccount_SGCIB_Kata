@@ -1,9 +1,9 @@
 package feature;
 
 import com.bankaccount.kata.Clock;
-import com.bankaccount.kata.MyBankAccount;
+import com.bankaccount.kata.domain.MyBankAccount;
 import com.bankaccount.kata.Printer;
-import com.bankaccount.kata.StatementsRepository;
+import com.bankaccount.kata.domain.StatementsRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,14 +38,14 @@ public class PrintStatementsTest {
 
     @Test
     public void should_print_no_statements_when_no_statements_have_been_done() {
-        myBankAccount.printStatements();
+        myBankAccount.printAllMyBankAccountStatements();
         verify(printer).print("No statements");
     }
 
     @Test
     public void should_print_one_deposit_statement_when_just_one_deposit_statement_has_been_done() {
-        myBankAccount.deposit(10);
-        myBankAccount.printStatements();
+        myBankAccount.depositAmount(10);
+        myBankAccount.printAllMyBankAccountStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
         inOrder.verify(printer).print("DEPOSIT || 2017-08-27 || 10 || 0");
@@ -53,8 +53,8 @@ public class PrintStatementsTest {
 
     @Test
     public void should_print_one_withdraw_statement_when_just_one_withdraw_statement_has_been_done() {
-        myBankAccount.withdraw(10);
-        myBankAccount.printStatements();
+        myBankAccount.withdrawAmount(10);
+        myBankAccount.printAllMyBankAccountStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
         inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || -10 || 0");
@@ -62,8 +62,8 @@ public class PrintStatementsTest {
 
     @Test
     public void should_print_one_withdraw_statement_when_just_one_withdraw_all_statement_has_been_done() {
-        myBankAccount.withdrawAll();
-        myBankAccount.printStatements();
+        myBankAccount.withdrawAllAmount();
+        myBankAccount.printAllMyBankAccountStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
         inOrder.verify(printer).print("WITHDRAW || 2017-08-27 || 0 || 0");
@@ -71,10 +71,10 @@ public class PrintStatementsTest {
 
     @Test
     public void should_print_all_the_different_statements_when_many_statements_have_been_done() {
-        myBankAccount.deposit(100);
-        myBankAccount.withdraw(20);
-        myBankAccount.withdrawAll();
-        myBankAccount.printStatements();
+        myBankAccount.depositAmount(100);
+        myBankAccount.withdrawAmount(20);
+        myBankAccount.withdrawAllAmount();
+        myBankAccount.printAllMyBankAccountStatements();
         InOrder inOrder = inOrder(printer);
         inOrder.verify(printer).print("Type || Date || Amount || Balance");
         inOrder.verify(printer).print("DEPOSIT || 2017-08-27 || 100 || 0");

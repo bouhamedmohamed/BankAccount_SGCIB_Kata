@@ -1,4 +1,4 @@
-package com.bankaccount.kata;
+package com.bankaccount.kata.domain;
 
 public enum TypeStatement {
     WITHDRAW, DEPOSIT

@@ -1,5 +1,8 @@
 package com.bankaccount.kata;
 
+import com.bankaccount.kata.domain.MyBankAccount;
+import com.bankaccount.kata.domain.StatementsRepository;
+
 import java.util.Scanner;
 
 class MainApplication {
@@ -22,7 +25,7 @@ class MainApplication {
 
     private static void bankAccountInitilization() {
         Clock clock = new Clock();
-        printer=new Printer();
+        printer = new Printer();
         StatementsRepository statementsRepository = new StatementsRepository(clock);
         myBankAccount = new MyBankAccount(statementsRepository, printer);
 
@@ -53,17 +56,17 @@ class MainApplication {
     private static void withdarawalAll() throws Exception {
         printer.print("All withdraw Service");
 
-        myBankAccount.withdrawAll();
+        myBankAccount.withdrawAllAmount();
 
         animator();
     }
 
     private static void displayAll() throws Exception {
         printer.print("All Your BankAccount statements ");
-        myBankAccount.printStatements();
+        myBankAccount.printAllMyBankAccountStatements();
 
 
-        printer.print("Your balance(" + myBankAccount.getBalance() + ")");
+        printer.print("Your balance(" + myBankAccount.getMyBankAccountBalance() + ")");
         animator();
     }
 
@@ -72,7 +75,7 @@ class MainApplication {
         printer.print("input the amout to withdraw");
         Scanner scan = new Scanner(System.in);
         int amountToWithdraw = scan.nextInt();
-        myBankAccount.withdraw(amountToWithdraw);
+        myBankAccount.withdrawAmount(amountToWithdraw);
         animator();
     }
 
@@ -81,7 +84,7 @@ class MainApplication {
         printer.print("input the amout to deposit");
         Scanner scan = new Scanner(System.in);
         int amountToDeposit = scan.nextInt();
-        myBankAccount.deposit(amountToDeposit);
+        myBankAccount.depositAmount(amountToDeposit);
         animator();
     }
 
