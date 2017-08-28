@@ -11,7 +11,7 @@ public class MyBankAccount {
     private static int ZERO_AMOUNT = 0;
     private AtomicInteger balance = new AtomicInteger(0);
     private static final String ERROR_MESSAGE_BALANCE_AMOUNT_MUST_BE_POSITIVE = "The balance amount must be positive";
-    private static final String ERROR_MESSAGE_AMOUNT_MUST_BE_POSITIVE="The amount must be positive";
+    private static final String ERROR_MESSAGE_AMOUNT_MUST_BE_POSITIVE = "The amount must be positive";
 
 
     public MyBankAccount(StatementsRepository statementsRepository, Printer printer) {
@@ -23,6 +23,8 @@ public class MyBankAccount {
     public void depositAmount(int amount) {
         if (isStrictlyPositiveAmount(amount))
             statementsRepository.addDeposit(amount);
+        else
+            throw new RuntimeException(ERROR_MESSAGE_AMOUNT_MUST_BE_POSITIVE);
     }
 
     public void withdrawAmount(int amount) {
