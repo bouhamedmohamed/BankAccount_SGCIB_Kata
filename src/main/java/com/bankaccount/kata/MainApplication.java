@@ -55,8 +55,11 @@ class MainApplication {
 
     private static void withdarawalAll() throws Exception {
         printer.print("All withdraw Service");
-
-        myBankAccount.withdrawAllAmount();
+        try {
+            myBankAccount.withdrawAllAmount();
+        } catch (RuntimeException e) {
+            System.err.println("Exception: " + e.getMessage());
+        }
 
         animator();
     }
@@ -75,7 +78,11 @@ class MainApplication {
         printer.print("input the amout to withdraw");
         Scanner scan = new Scanner(System.in);
         int amountToWithdraw = scan.nextInt();
-        myBankAccount.withdrawAmount(amountToWithdraw);
+        try {
+            myBankAccount.withdrawAmount(amountToWithdraw);
+        } catch (RuntimeException e) {
+            System.err.println("Exception: " + e.getMessage());
+        }
         animator();
     }
 
@@ -84,7 +91,13 @@ class MainApplication {
         printer.print("input the amout to deposit");
         Scanner scan = new Scanner(System.in);
         int amountToDeposit = scan.nextInt();
-        myBankAccount.depositAmount(amountToDeposit);
+
+        try {
+            myBankAccount.depositAmount(amountToDeposit);
+        } catch (RuntimeException e) {
+            System.err.println("Exception: " + e.getMessage());
+        }
+
         animator();
     }
 
