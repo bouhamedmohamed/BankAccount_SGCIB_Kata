@@ -1,8 +1,8 @@
 package feature;
 
 import com.bankaccount.kata.Clock;
-import com.bankaccount.kata.domain.MyBankAccount;
 import com.bankaccount.kata.Printer;
+import com.bankaccount.kata.domain.MyBankAccount;
 import com.bankaccount.kata.domain.StatementsRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,10 +33,9 @@ public class WithdrawTest {
         Assert.assertEquals(-12, myBankAccount.getMyBankAccountBalance());
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void should_not_accept_negative_amount_when_we_withdraw() {
         myBankAccount.withdrawAmount(-12);
-        Assert.assertEquals(0, myBankAccount.getMyBankAccountBalance());
     }
 
     @Test
