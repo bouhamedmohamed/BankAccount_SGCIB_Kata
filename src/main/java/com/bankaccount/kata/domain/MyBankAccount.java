@@ -9,7 +9,7 @@ public class MyBankAccount {
     private final StatementsRepository statementsRepository;
     private final Printer printer;
     private static final int ZERO_AMOUNT = 0;
-    private final AtomicInteger balance = new AtomicInteger(0);
+    private final AtomicInteger balanceInEachStatement = new AtomicInteger(0);
     private static final String ERROR_MESSAGE_BALANCE_AMOUNT_MUST_BE_POSITIVE = "The balance amount must be positive";
     private static final String ERROR_MESSAGE_AMOUNT_MUST_BE_POSITIVE = "The amount must be positive";
 
@@ -44,7 +44,7 @@ public class MyBankAccount {
     }
 
     public void printAllMyBankAccountStatements() {
-        balance.set(0);
+        balanceInEachStatement.set(0);
         final String header = "Type || Date || Amount || Balance";
         if (statementsRepository.getBankAccountStatements().isEmpty())
             printer.print("No statements");
@@ -62,7 +62,7 @@ public class MyBankAccount {
 
     private Function<BankAccountStatement, String> getBankAccountStatementTransaction() {
 
-        return statement -> statement.toString().concat(" || " + balance.getAndAdd(statement.getAmountStatement()));
+        return statement -> statement.toString().concat(" || " + balanceInEachStatement.getAndAdd(statement.getAmountStatement()));
     }
 
     public int getMyBankAccountBalance() {
