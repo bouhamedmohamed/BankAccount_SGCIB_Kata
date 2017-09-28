@@ -24,7 +24,7 @@ public class StatementsRepository {
     }
 
     public void addWithdraw(int amount) {
-        bankAccountStatements.add(createNewBankAccountStatement(-amount, TypeStatement.WITHDRAW));
+        bankAccountStatements.add(createNewBankAccountStatement(amount, TypeStatement.WITHDRAW));
     }
 
     public List<BankAccountStatement> getBankAccountStatements() {
@@ -33,7 +33,7 @@ public class StatementsRepository {
 
     private BankAccountStatement createNewBankAccountStatement(int amountStatement, TypeStatement typeStatement) {
         return BankAccountStatement.BankAccountStatementBuilder.aBankAccountStatement()
-                .withAmountStatement(amountStatement)
+                .withAmountStatement(typeStatement.amount(amountStatement))
                 .withDateStatement(clock.getToDayDate())
                 .withTypeStatement(typeStatement)
                 .build();
